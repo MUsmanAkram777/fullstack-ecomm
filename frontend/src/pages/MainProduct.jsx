@@ -22,7 +22,7 @@ function MainProduct() {
     
     dispatch(addToCart({product:{
       id:product._id,
-      img:product.image,
+      image:product.image,
       name:product.name,
       price:product.price,
       countInStock:product.countInStock,

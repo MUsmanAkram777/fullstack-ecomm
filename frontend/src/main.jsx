@@ -1,60 +1,82 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Home from './pages/Home.jsx';
-import Cart from './pages/Cart.jsx';
-import Login from './pages/Login.jsx';
-import SignUp from './pages/SignUp.jsx';
-import MainProduct from './pages/MainProduct.jsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Cart from "./pages/Cart.jsx";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
+import MainProduct from "./pages/MainProduct.jsx";
 
-
-import { store } from './store.js';
-import { Provider } from 'react-redux'
-
+import { store } from "./store.js";
+import { Provider } from "react-redux";
+import Profile from "./pages/profile/Profile.jsx";
+import UpdateProfile from "./pages/profile/UpdateProfile.jsx";
+import Layout from "./pages/profile/Layout.jsx";
+import Shipping from "./pages/Shipping.jsx";
+import Payment from "./pages/Payment.jsx";
+import PlaceOrder from "./pages/PlaceOrder.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
-    children:[
+    element: <App />,
+    children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "cart",
-        element: <Cart/>,
-        children:[
-          {
-            path:':id?',
-            element:<Cart/>
-          }
-        ]
+        element: <Cart />,
       },
       {
         path: "signin",
-        element: <Login/>
+        element: <Login />
       },
       {
-        path: "sigup",
-        element: <SignUp/>
-      },{
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "shipping",
+        element: <Shipping />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
+      },
+      {
+        path: "placeorder",
+        element: <PlaceOrder />,
+      },
+      {
         path: "product/:id",
-        element: <MainProduct/>
-      }
-    ]
+        element: <MainProduct />,
+      },
+      {
+        path: "profile",
+        element: <Layout/>,
+        children:[
+          {
+            path: "",
+            element: <Profile />
+          },
+          {
+            path: "update",
+            element: <UpdateProfile />,
+          }
+        ]
+      },
+    ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-     <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

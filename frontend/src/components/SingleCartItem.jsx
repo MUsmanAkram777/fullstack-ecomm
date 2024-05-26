@@ -17,7 +17,7 @@ function SingleCartItem({ product }) {
       addToCart({
         product: {
           id: product.id,
-          img: product.img,
+          image: product.image,
           name: product.name,
           price: product.price,
           countInStock: product.countInStock,
@@ -37,7 +37,7 @@ function SingleCartItem({ product }) {
       <li className="flex py-6 sm:py-6 ">
         <div className="flex-shrink-0">
           <img
-            src={product.img}
+            src={product.image}
             alt={product.name}
             className="sm:h-38 sm:w-38 h-24 w-24 rounded-md object-contain object-center"
           />
