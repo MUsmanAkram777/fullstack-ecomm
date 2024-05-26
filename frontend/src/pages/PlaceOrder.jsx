@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import CheckoutNav from "../components/CheckoutNav";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addOrder } from "../slices/cartSlice";
+import { addOrder } from "../slices/orderSlice";
+import { clearCart } from "../slices/cartSlice";
 
 function PlaceOrder() {
   const cart = useSelector((state) => state.cart);
@@ -25,6 +26,8 @@ function PlaceOrder() {
         totalPrice:cart.totalPrice,
         shippingPrice:parseFloat((cart.totalPrice * 0.1).toFixed(2))
     }))
+    dispatch(clearCart())
+    navigate('/profile')
   }
   
 

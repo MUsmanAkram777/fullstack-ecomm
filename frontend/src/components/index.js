@@ -7,3 +7,4 @@ export { default as ProductList} from "./ProductList";
 export { default as Reviews} from "./Reviews";
 export { default as Loader} from "./Loader";
 export { default as SingleCartItem} from "./SingleCartItem";
+export { default as AllOrders} from "./AllOrders";

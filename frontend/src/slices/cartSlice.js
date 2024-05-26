@@ -14,39 +14,7 @@ const initialState = JSON.parse(localStorage.getItem("cart")) ?? {
   },
 };
 
-export const addOrder = createAsyncThunk(
-  "addOrder",
-  async (
-    { orderItems, shippingAddress, paymentMethod, totalPrice, shippingPrice },
-    { getState }
-  ) => {
-    
-    const state = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${state.user.userInfo.token}`,
-      },
-    };  
-    try {
-      const { data } = await axios.post(
-        `/api/orders`,
-        {
-          orderItems,
-          shippingAddress,
-          paymentMethod,
-          totalPrice,
-          shippingPrice,
-        },
-        config
-      );
-      return data;
-    } catch (error) {
-      console.log(error.response.data.message);
-      return { error: error.response.data.message };
-    }
-  }
-);
+
 
 export const cartSlice = createSlice({
   name: "cartDetails",
@@ -104,24 +72,16 @@ export const cartSlice = createSlice({
     setPaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(addOrder.pending, (state, action) => { 
-    });
-    builder.addCase(addOrder.fulfilled, (state, action) => {
-      if (action.payload.error) {
-        state.error = action.payload.error;
-      } else {
-        console.log(action.payload)
-        state.error = "";
-      } 
-    });
-    builder.addCase(addOrder.rejected, (state, action) => { 
-      state.error = "Something went wrong";
-    });
+    clearCart:(state,action) => {
+      state.cartItems = []
+      state.totalItems= 0
+      state.totalPrice= 0
+      state.shippingAddress = {}
+      state.paymentMethod = ""
+    }
   },
 });
 
-export const { addToCart, removeItem, setShippingAddress, setPaymentMethod } =
+export const { addToCart, removeItem, setShippingAddress, setPaymentMethod,clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

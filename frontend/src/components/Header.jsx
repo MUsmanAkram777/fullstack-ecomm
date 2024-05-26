@@ -3,6 +3,8 @@ import { LuShoppingCart } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../slices/userSlice";
+import { clearCart } from "../slices/cartSlice";
+import { clearOrder } from "../slices/orderSlice";
 
 function Header() {
   const userInfo = useSelector(state=>state.user.userInfo)
@@ -13,6 +15,8 @@ function Header() {
   const dispatch = useDispatch()
   const logoutHandler = () => {
     dispatch(logout())
+    dispatch(clearCart())
+    dispatch(clearOrder())
     setIsAccountOpen(false)
   }
 

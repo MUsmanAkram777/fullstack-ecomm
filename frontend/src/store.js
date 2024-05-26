@@ -10,7 +10,7 @@ import cartReducer, {
   removeItem,
   setShippingAddress,
   setPaymentMethod,
-  addOrder
+  clearCart
 } from "./slices/cartSlice";
 import userReducer, {
   fetchUserLogin,
@@ -18,6 +18,7 @@ import userReducer, {
   fetchUserRegister,
   updateUser,
 } from "./slices/userSlice";
+import orderReducer, { addOrder,clearOrder } from "./slices/orderSlice";
 
 const initialState = {};
 
@@ -33,7 +34,8 @@ localStorageMiddleware.startListening({
     updateUser,
     setShippingAddress,
     setPaymentMethod,
-    addOrder
+    addOrder,
+    clearCart,clearOrder
   ),
   effect: (action, listenerApi) => {
     localStorage.setItem("cart", JSON.stringify(listenerApi.getState().cart));
@@ -50,6 +52,7 @@ export const store = configureStore({
     productDetail: productDetailReducer,
     cart: cartReducer,
     user: userReducer,
+    order:orderReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(localStorageMiddleware.middleware),

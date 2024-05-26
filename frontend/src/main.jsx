@@ -17,6 +17,7 @@ import Layout from "./pages/profile/Layout.jsx";
 import Shipping from "./pages/Shipping.jsx";
 import Payment from "./pages/Payment.jsx";
 import PlaceOrder from "./pages/PlaceOrder.jsx";
+import OrderDetails from "./pages/OrderDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "placeorder",
         element: <PlaceOrder />,
+      },
+      {
+        path: "/order/:id",
+        element: <OrderDetails />,
       },
       {
         path: "product/:id",
